@@ -9,10 +9,11 @@ from django.utils import timezone
 from django.views import generic
 from .utils import md2html_util
 from django.utils.safestring import mark_safe
+
+
 class IndexView(generic.ListView):
     template_name = 'letters/index.html'
     context_object_name = "letters"
-
     def get_queryset(self):
         """Return the last five published letters."""
         return Letter.objects.all()
@@ -25,7 +26,8 @@ def letterDetail(request,letter_id):
         'md2html' : mark_safe(md2html),
     }
     return render(request,"letters/letterDetail.html",context)
-
+def home(request):
+    return render(request, 'letters/home.html')
 def writeLetter(request):
     authors = Author.objects.all()
     context = {'authors':authors,}

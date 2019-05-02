@@ -1,16 +1,9 @@
 {% load static %}
 
-<style>
-    @font-face {
-        font-family: chinese;
-        src: "{% static 'letters/font/chinese.ttf' %}"
-    }
-    body {
-        font-family: chinese;
-    }
-</style>
+
 <link rel="stylesheet" type="text/css" href="{% static 'letters/css/bootstrap.css' %}">
 
+<script src="{% static 'letters/js/jquery-3.4.1.min.js' %}"></script> 
 <script src="{% static 'letters/js/bootstrap.js' %}"></script> 
 
 
@@ -22,7 +15,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="{% url 'letters:home' %}">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="{% url 'letters:index' %}">Our letters</a>
       <a class="nav-item nav-link" href="{% url 'letters:writeLetter' %}">Write Letter</a>
       <a class="nav-item nav-link"  href="/admin">Dashboard</a>
