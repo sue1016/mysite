@@ -1,17 +1,33 @@
 {% load static %}
 
+<style>
+    @font-face {
+        font-family: chinese;
+        src: "{% static 'letters/font/chinese.ttf' %}"
+    }
+    body {
+        font-family: chinese;
+    }
+</style>
 <link rel="stylesheet" type="text/css" href="{% static 'letters/css/bootstrap.css' %}">
 
 <script src="{% static 'letters/js/bootstrap.js' %}"></script> 
 
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" href="{% url 'letters:index' %}">Our letters</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'letters:writeLetter' %}">Write letter</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/admin">Dashbord</a>
-  </li>
-</ul>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'letters:index' %}">see u in fall</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{% url 'letters:index' %}">Our letters</a>
+      <a class="nav-item nav-link" href="{% url 'letters:writeLetter' %}">Write Letter</a>
+      <a class="nav-item nav-link"  href="/admin">Dashboard</a>
+    </div>
+  </div>
+</nav>
+    
+<img src="{% static 'letters/images/banner.jpg' %}" class="img-fluid" alt="Responsive image">

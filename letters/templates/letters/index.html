@@ -1,10 +1,30 @@
 {% include "letters/base.html" %}
-{% if latest_letter_list %}
+{% if letters %}
+
+<table class="table table-striped font-italic text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">title</th>
+      <th scope="col">date</th>
+      <th scope="col">author</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for letter in letters %}
+    <tr>
+      <th scope="row">{{letter.id}}</th>
+      <td><a href="{% url 'letters:letterDetail' letter.id%}">{{ letter.title }}</a></td>
+      <td>{{letter.pub_date}}</td>
+      <td>{{letter.pub_author.name}}</td>
+    </tr>      
+  {% endfor %}
+  </tbody>
+</table>
     <ul>
-    {% for letter in latest_letter_list %}
-        <li><a href="{% url 'letters:letterDetail' letter.id%}">{{ letter.title }}</a></li>
-    {% endfor %}
+
     </ul>
 {% else %}
     <p>No letters are available.</p>
 {% endif %}
+

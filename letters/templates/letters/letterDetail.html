@@ -1,10 +1,17 @@
 {% include "letters/base.html" %}
-<h1>{{ letter.title }}</h1>
-<div id="context">
-  {{letter.letter_md}}  
-</div>
+<div class="container-fluid shadow p-3 mb-5 bg-white rounded text-monospace">
 
-<div id="footer">
+    <div class="display-4 font-italic text-center">{{ letter.title }}</div>
+    
+    <div class = "font-weight-light" id="context" style="margin:20px">
+      {{md2html}}  
+    </div>
+
+
+<div id="footer" class="font-italic text-right" >
     date: {{letter.pub_date}} <br>
     by {{letter.pub_author}}
+</div>
+    
+    
 </div>

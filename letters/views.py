@@ -7,17 +7,24 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
+from .utils import md2html_util
+from django.utils.safestring import mark_safe
 class IndexView(generic.ListView):
     template_name = 'letters/index.html'
-    context_object_name = "latest_letter_list"
+    context_object_name = "letters"
 
     def get_queryset(self):
         """Return the last five published letters."""
-        return Letter.objects.order_by('-pub_date')[:5]
+        return Letter.objects.all()
 
-class LetterDetailView(generic.DetailView):
-    model = Letter
-    template_name = "letters/letterDetail.html"
+def letterDetail(request,letter_id):
+    letter = Letter.objects.get(pk=letter_id)
+    md2html = md2html_util.md2html(letter.letter_md)
+    context = {
+        'letter' : letter,
+        'md2html' : mark_safe(md2html),
+    }
+    return render(request,"letters/letterDetail.html",context)
 
 def writeLetter(request):
     authors = Author.objects.all()
@@ -30,9 +37,11 @@ def writeLetter(request):
 def sendLetter(request):
     author_id = request.POST['author_id']
     author = Author.objects.get(pk=author_id)
+    letter_md = request.POST['letter_md']
     newLetter = Letter(title = request.POST['title'],
-                       letter_md = request.POST['letter_md'],
+                       letter_md = letter_md,
                        pub_date = timezone.now(),
                        pub_author = author)
+
     newLetter.save()
     return HttpResponseRedirect(reverse('letters:index'))
