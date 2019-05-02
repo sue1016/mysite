@@ -1,0 +1,9 @@
+{% if latest_letter_list %}
+    <ul>
+    {% for letter in latest_letter_list %}
+        <li><a href="{% url 'letters:letterDetail' letter.id%}">{{ letter.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No letters are available.</p>
+{% endif %}

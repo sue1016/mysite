@@ -1,0 +1,17 @@
+<h1>Write a letter</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'letters:sendLetter'%}" method="post">
+{% csrf_token %}
+title:<br>
+<input type="text" name="title" value="letter title">
+<textarea name="letter_md">
+just write
+</textarea>
+{% for author in authors %}
+    <input type="radio" name="author_id" id="author{{ forloop.counter }}" value="{{ author.id }}">
+    <label for="author{{ author.counter }}">{{ author.name }}</label><br>
+{% endfor %}
+<input type="submit" value="send">
+</form>
