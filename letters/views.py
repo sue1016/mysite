@@ -6,19 +6,18 @@ from .models import Letter,Author
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
-def index(request):
-    latest_letter_list = Letter.objects.order_by('-pub_date')[:5]
-    context = {
-        'latest_letter_list': latest_letter_list,
-    }
-    
-    return render(request, 'letters/index.html', context)
-def letterDetail(request, letter_id):    
-    try:
-        letter = Letter.objects.get(pk=letter_id)
-    except Letter.DoesNotExist:
-        raise Http404("Letter does not exist")
-    return render(request, 'letters/letterDetail.html', {'letter': letter})
+from django.views import generic
+class IndexView(generic.ListView):
+    template_name = 'letters/index.html'
+    context_object_name = "latest_letter_list"
+
+    def get_queryset(self):
+        """Return the last five published letters."""
+        return Letter.objects.order_by('-pub_date')[:5]
+
+class LetterDetailView(generic.DetailView):
+    model = Letter
+    template_name = "letters/letterDetail.html"
 
 def writeLetter(request):
     authors = Author.objects.all()

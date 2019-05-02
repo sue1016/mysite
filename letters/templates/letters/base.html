@@ -1,0 +1,17 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'letters/css/bootstrap.css' %}">
+
+<script src="{% static 'letters/js/bootstrap.js' %}"></script> 
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'letters:index' %}">Our letters</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'letters:writeLetter' %}">Write letter</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/admin">Dashbord</a>
+  </li>
+</ul>
