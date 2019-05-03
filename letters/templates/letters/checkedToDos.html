@@ -1,0 +1,37 @@
+{% include "letters/base.html" %}
+{% if todos %}
+<div class="container-fluid text-monospace " >
+<h1 class="text-center font-italic">Done List</h1>
+
+
+<table class="table table-striped font-italic text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">content</th>
+      <th scope="col">pub_date</th>
+      <th scope="col">check_date</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for todo in todos %}
+    <tr>
+      <th scope="row">
+          <a href="{% url 'letters:uncheckToDo' todo.id%}">uncheck</a>/<a href="{% url 'letters:deleteToDo' todo.id%}">delete</a></th>
+      <td>{{todo.content}}</td>
+      <td>{{todo.pub_date}}</td>
+      <td>{{todo.check_date}}</td>
+    </tr>      
+  {% endfor %}
+  </tbody>
+</table>
+    <ul>
+
+    </ul>
+
+{% else %}
+    <p>No todos are available.</p>
+{% endif %}
+</div>
+
+

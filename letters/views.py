@@ -2,7 +2,7 @@
 # Create your views here.
 from django.http import Http404
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Letter,Author
+from .models import Letter,Author,Todo
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
@@ -47,3 +47,48 @@ def sendLetter(request):
 
     newLetter.save()
     return HttpResponseRedirect(reverse('letters:index'))
+def addToDo(request):
+    # Always return an HttpResponseRedirect after successfully dealing
+    # with POST data. This prevents data from being posted twice if a
+    # user hits the Back button.
+    return render(request, 'letters/addToDo.html')
+def addToList(request):
+    todo_content = request.POST['content']
+    todo = Todo(content = todo_content,
+                 pub_date = timezone.now(),
+                 hasChecked = False,
+                 check_date = timezone.now()
+               )
+
+    todo.save()
+    return HttpResponseRedirect(reverse('letters:toDoList'))
+def checkTodo(request,todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    todo.hasChecked = True
+    todo.check_date = timezone.now()
+    todo.save()
+    return HttpResponseRedirect(reverse('letters:toDoList'))
+def uncheckToDo(request,todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    todo.hasChecked = False
+    todo.check_date = timezone.now()
+    todo.save()
+    return HttpResponseRedirect(reverse('letters:toDoList'))
+def deleteToDo(request,todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    todo.hasDeleted = True
+    todo.save()
+    return HttpResponseRedirect(reverse('letters:toDoList'))
+class toDoListView(generic.ListView):
+    template_name = 'letters/todolist.html'
+    context_object_name = "todos"
+    def get_queryset(self):
+        """Return the last five published letters."""
+        return Todo.objects.all().filter(hasChecked=False,hasDeleted=False)
+    
+class checkedToDosView(generic.ListView):
+    template_name = 'letters/checkedToDos.html'
+    context_object_name = "todos"
+    def get_queryset(self):
+        """Return the last five published letters."""
+        return Todo.objects.all().filter(hasChecked=True)    

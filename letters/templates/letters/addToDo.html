@@ -1,0 +1,24 @@
+{% include "letters/base.html" %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+<div class="container-fluid text-monospace " >
+<h1 class="text-center font-italic">Add To List</h1>
+
+
+<form action="{% url 'letters:addToList'%}" method="post">
+{% csrf_token %}
+    
+
+    <div class="form-group">
+        <label for="content">content</label>
+        <textarea class="form-control" name="content" id="content" rows="7"  placeholder="add to list"></textarea>
+    </div>
+
+ 
+<input type="submit" class="btn btn-outline-primary" value="add to list">
+</form>
+
+
+</div>

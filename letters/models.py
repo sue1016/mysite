@@ -15,11 +15,15 @@ class Letter(models.Model):
     letter_html = models.CharField(max_length=20000,blank=True)
     pub_date = models.DateTimeField('date published')
     pub_author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    hasDeleted = models.BooleanField(default=False)
     def __str__(self):
         return self.letter_md
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
-
-     
-    
+class Todo(models.Model):
+    content = models.CharField(max_length=20000)
+    pub_date = models.DateTimeField('date published')
+    hasChecked = models.BooleanField()
+    check_date = models.DateTimeField('date checked',blank=True)
+    hasDeleted = models.BooleanField(default=False)
