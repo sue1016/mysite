@@ -10,4 +10,35 @@
     date: 19/05/03 7:40am<br>
     by sue
 </p>
+<div class="dropdown-divider"></div>
+<div id="counter">
+    <blockquote class="blockquote text-center">
+        <ul class="list-inline">
+          <li class="list-inline-item" id="days">Lorem ipsum</li>days   
+          <li class="list-inline-item" id="hours">Nulla volutpat</li>hours   
+          <li class="list-inline-item" id="minutes">Phasellus iaculis</li>minites  
+          <li class="list-inline-item" id="seconds">Nulla volutpat</li> seconds      
+        </ul>
+  <footer class="blockquote-footer">nice to meet u since 2018.6.9</footer>
+</blockquote>
 </div>
+    
+<script>
+    var cnt_el = document.getElementById('counter'),
+    counter = new Counter(cnt_el);
+    var date_str = "2018-06-09T22:00:00",
+	days_el = document.getElementById('days'),
+	hours_el = document.getElementById('hours'),
+	minutes_el = document.getElementById('minutes'),
+	seconds_el = document.getElementById('seconds'),
+	millisecs_el = document.getElementById('millisecs'),
+	counter = new Counter({
+		date: date_str,
+		days: days_el,
+		hours: hours_el,
+		minutes: minutes_el,
+		seconds: seconds_el,
+		millisecs: millisecs_el,
+	});
+    counter.init();
+</script>
