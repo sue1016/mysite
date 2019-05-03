@@ -91,4 +91,4 @@ class checkedToDosView(generic.ListView):
     context_object_name = "todos"
     def get_queryset(self):
         """Return the last five published letters."""
-        return Todo.objects.all().filter(hasChecked=True)    
+        return Todo.objects.all().filter(hasChecked=True,hasDeleted=False)

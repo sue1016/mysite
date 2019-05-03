@@ -2,7 +2,9 @@
 {% if todos %}
 <div class="container-fluid text-monospace " >
 <h1 class="text-center font-italic">Done List</h1>
-
+    
+<div id="sen-panel"></div>
+<div id="wrapper_id" >
 
 <table class="table table-striped font-italic text-center">
   <thead>
@@ -25,13 +27,19 @@
   {% endfor %}
   </tbody>
 </table>
-    <ul>
-
-    </ul>
+</div>
+<div id="sen-nav"></div>
 
 {% else %}
     <p>No todos are available.</p>
 {% endif %}
 </div>
 
-
+<script type="text/javascript">
+$(function(){
+    $('#wrapper_id').senzill({
+       nav: '#sen-nav', //The navbar id
+       panel: '#sen-panel', //The panel id
+    });
+});
+</script>

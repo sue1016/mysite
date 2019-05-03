@@ -5,11 +5,12 @@
 
 <script src="{% static 'letters/js/jquery-3.4.1.min.js' %}"></script> 
 <script src="{% static 'letters/js/bootstrap.js' %}"></script> 
+<script src="{% static 'letters/js/senzill-pagination.js' %}"></script>
+<script src="{% static 'letters/js/Counter.js' %}"></script>
 
-
-
+<div id="header" >
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'letters:index' %}">see u in fall</a>
+  <a class="navbar-brand" href="{% url 'letters:index' %}">SEE U IN FALL</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,4 +27,5 @@
   </div>
 </nav>
     
-<img src="{% static 'letters/images/banner.jpg' %}" class="img-fluid" alt="Responsive image">
+<img src="{% static 'letters/images/banner.jpg' %}" class="img-fluid" alt="Responsive image" style="margin-bottom:20px">
+</div>
