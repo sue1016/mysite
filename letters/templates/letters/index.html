@@ -1,8 +1,7 @@
 
 {% include "letters/base.html" %}
 {% if letters %}
-<div id="sen-panel"></div>
-<div id="wrapper_id" >
+
 <table class="table table-striped font-italic text-center" style="margin:20px">
   <thead>
     <tr>
@@ -23,16 +22,8 @@
   {% endfor %}
   </tbody>
 </table>
-</div>
-<div id="sen-nav"></div>
+
+
 {% else %}
     <p>No letters are available.</p>
 {% endif %}
-<script type="text/javascript">
-$(function(){
-    $('#wrapper_id').senzill({
-       nav: '#sen-nav', //The navbar id
-       panel: '#sen-panel', //The panel id
-    });
-});
-</script>

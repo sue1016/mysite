@@ -228,6 +228,7 @@
             var panel = function (panel) {
                 $panel = $(panel);
                 $panel.empty();
+                 /*
                 var $entries = $('<form/>', {
                     class: 'float-left',
                     id: 'sen-select-fg'
@@ -247,13 +248,14 @@
                 $select.appendTo($entries);
                 $text_show.prependTo($entries);
                 $text_entries.appendTo($entries);
+             
                 $.each(showOptions, function (key, val) {
                     $('<option/>', {
                         'class': 'sen-select-option',
                         'data-elem-count': val,
                         'selected': (elPerPage == val) ? true : false
                     }).appendTo($select).text(val);
-                });
+                });*/
 
 
                 var $searchBox = $('<input/>', {

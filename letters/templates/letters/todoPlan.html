@@ -1,23 +1,26 @@
 {% include "letters/base.html" %}
 <div class="container-fluid shadow p-3 mb-5 bg-white rounded text-monospace">
 
-    <div class="display-4 font-italic text-center">{{ letter.title }}</div>
+    <div class="display-4 font-italic text-center">{{ todo.content }}</div>
     
     <div class = "font-weight-light" id="context" style="margin:20px">
+        {{todo.plan_md}}
     </div>
 
 
 <div id="footer" class="font-italic text-right" >
 
-    date: {{letter.pub_date}} <br>
-    by {{letter.pub_author}}
-</div>
+    <a href="{% url 'letters:makeToDoPlanView' todo.id%}">edit plan</a>
     
+</div>
 <script>
+    
     var converter = new showdown.Converter(),
-    text = "{{letter.letter_md}}",
+    text = "{{todo.plan_md}}",
     html = converter.makeHtml(text);
     $('#context').html(html);
+    
 
-</script>
-</div
+</script>    
+    
+</div>

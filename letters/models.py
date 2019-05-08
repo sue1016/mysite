@@ -3,7 +3,21 @@ from django.db import models
 
 # Create your models here.
 from django.utils import timezone
+# models.py
 
+from solo.models import SingletonModel
+
+
+class ChatBot(SingletonModel):
+    name = models.CharField(max_length=255, default='Cara Sue')
+
+
+    def __unicode__(self):
+        return u"ChatBot"
+
+    class Meta:
+        verbose_name = "ChatBot"
+        
 class Author(models.Model):
     name = models.CharField(max_length=200)
     def __str__(self):
@@ -12,7 +26,6 @@ class Author(models.Model):
 class Letter(models.Model):
     title = models.CharField(max_length=200)
     letter_md = models.CharField(max_length=20000)
-    letter_html = models.CharField(max_length=20000,blank=True)
     pub_date = models.DateTimeField('date published')
     pub_author = models.ForeignKey(Author, on_delete=models.CASCADE)
     hasDeleted = models.BooleanField(default=False)
@@ -23,6 +36,7 @@ class Letter(models.Model):
 
 class Todo(models.Model):
     content = models.CharField(max_length=20000)
+    plan_md = models.CharField(max_length=20000,blank=True)
     pub_date = models.DateTimeField('date published')
     hasChecked = models.BooleanField()
     check_date = models.DateTimeField('date checked',blank=True)

@@ -1,0 +1,49 @@
+{% include "letters/base.html" %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 560;
+        right: 50;
+        bottom: 0;
+        left: 50;
+    }
+</style>
+
+<div class="container-fluid text-monospace " >
+<h1 class="text-center font-italic">Make a todo Plan</h1>
+
+<div class="container" >
+    <form action="{% url 'letters:makeToDoPlan'  todo.id%}" method="post">
+    {% csrf_token %}
+
+        <div class="form-group">
+            <label for="content">to do</label>
+            <input type="text" class="form-control" name="content" id = "content" value="{{todo.content}}">
+        </div>
+
+        <div class="form-group">
+            <label for="context">plan</label>
+     
+            <textarea wrap="hard" class="form-control" name="plan_md" id="context" rows="14"  >{{todo.plan_md}}</textarea>
+                    <!--
+            <div name="plan_md" id="editor"></div>-->
+        </div>
+      
+         <div id="targetDiv"></div>
+
+
+
+    <input type="submit" class="btn btn-outline-primary" value="send">
+    </form>
+</div>
+<script>
+   /* var editor = ace.edit("editor");
+    editor.resize()
+    editor.setTheme("ace/theme/github");
+    editor.session.setMode("ace/mode/markdown");*/
+
+</script>
+
+</div>

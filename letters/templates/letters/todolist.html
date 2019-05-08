@@ -4,8 +4,7 @@
 <h1 class="text-center font-italic">To do List</h1>
 
 
-<div id="sen-panel"></div>
-<div id="wrapper_id" >
+
 <table class="table table-striped font-italic text-center">
   <thead>
     <tr>
@@ -18,7 +17,10 @@
    {% for todo in todos %}
     <tr>
       <th scope="row">
-          <a href="{% url 'letters:checkTodo' todo.id%}">check</a>/<a href="{% url 'letters:deleteToDo' todo.id%}">delete</a></th>
+          <a href="{% url 'letters:checkTodo' todo.id%}">check</a>/
+          <a href="{% url 'letters:deleteToDo' todo.id%}">delete</a>/
+          <a href="{% url 'letters:todoPlan' todo.id%}">plan</a>
+      </th>
       <td>{{todo.content}}</td>
       <td>{{todo.pub_date}}</td>
     </tr>      
@@ -31,12 +33,3 @@
     <p>No todos are available.</p>
 {% endif %}
 
-</div>
-<script type="text/javascript">
-$(function(){
-    $('#wrapper_id').senzill({
-       nav: '#sen-nav', //The navbar id
-       panel: '#sen-panel', //The panel id
-    });
-});
-</script>
